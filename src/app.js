@@ -4,6 +4,7 @@ const app = express();
 const User = require("./models/user");
 
 app.use(express.json());
+
 app.post("/signup",async (req,res) => {
   
     const user = new User(req.body);
@@ -12,7 +13,7 @@ app.post("/signup",async (req,res) => {
         await user.save();
         res.send("User Added successfully!!");
     } catch (err) {
-        res.status(400).send("Error saving the user:", + err.message);
+        res.status(400).send("Error saving the user:" + err.message);
     }
     
 });
@@ -64,13 +65,13 @@ app.patch("/user",async(req,res) => {
 
     try {
          const user = await User.findByIdAndUpdate({_id:data.userId},data, {
-            returnDocument:"after"
+            returnDocument:"after", runValidators: true,
          });
 
          res.send("User Updated successfully");
 
     } catch (err) {
-        res.status(400).send("Something went wrong");
+        res.status(400).send("Update failed:" + err.message);
     }
 });
 
