@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-
+const validator = require("validator");
 const userSchema = new mongoose.Schema({
     firstName: {
         type: String,
@@ -17,10 +17,20 @@ const userSchema = new mongoose.Schema({
         unique: true,
         lowercase: true,
         trim: true,
+        validate(value) {
+            if(!validator.isEmail(value)) {
+                throw new Error("Invalid email address: " + value);
+            }
+        },
     },
     password: {
         type: String,
         required: true,
+        validate(value) {
+            if (!validator.isStrongPassword(value)) {
+                throw new Error("Enter a Strong Password: " + value);
+            }
+        },
     },
     age: {
         type: Number,
@@ -36,7 +46,12 @@ const userSchema = new mongoose.Schema({
     },
     photoUrl:{
         type: String,
-        default: "",
+        default: "https://images.ctfassets.net/h6goo9gw1hh6/2sNZtFAWOdP1lmQ33VwRN3/24e953b920a9cd0ff2e1d587742a2472/1-intro-photo-final.jpg?w=1200&h=992&fl=progressive&q=70&fm=jpg",
+        validate(value) {
+             if(!validator.isURL(value)) {
+                throw new Error("Invalid photo URL: " +value);
+            }
+        }
     },
     about: {
         type: String,
