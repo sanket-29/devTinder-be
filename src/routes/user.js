@@ -90,7 +90,7 @@ userRouter.get("/user/feed", userAuth, async (req,res) => {
 
         }).select(USER_DATA).skip(skip).limit(limit);
 
-        res.json({ message: "Data fetched successfully", data: users });
+        res.send( users );
         
     } catch (err) {
         res.status(400).send("ERROR: " + err.message);
