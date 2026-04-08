@@ -10,7 +10,7 @@ const User = require("../models/user");
         return res.status(401).send("Unauthorized: No token provided");
     }
 
-    const decodedObj = await jwt.verify(token,"DEV@Tinder2000");
+    const decodedObj = await jwt.verify(token,process.env.JWT_SECRET);
 
     const { _id } = decodedObj;
 
