@@ -5,6 +5,7 @@ const app = express();
 const cookieParser = require("cookie-parser");
 
 require("dotenv").config();
+require("./utils/cronjob");
 
 app.use(express.json());
 app.use(cors({
