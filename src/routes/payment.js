@@ -63,7 +63,7 @@ paymentRouter.post("/payment/webhook", async (req, res) => {
         const isValidSignature = validateWebhookSignature(
             JSON.stringify(req.body), 
             webhookSignature, 
-            process.env.RAZORPAY_WEBHOOK_SECRET);
+            process.env.RAZOR_WEBHOOK_SECRET);
 
         if(!isValidSignature) {
            return res.status(400).send("Invalid signature");
