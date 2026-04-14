@@ -45,12 +45,17 @@ const userSchema = new mongoose.Schema({
             values:["male", "female", "others"],
             message: `{VALUE} is not a valid gender`
         },
-        // validate(value) { //works only for a new entry, for update we should enable it using runValidators.
-        //     if(!["male","female","others"].includes(value)){
-        //         throw new Error("Gender is not valid");
-        //     }
-        // }
+
     },
+    isPremium: {
+        type: Boolean,
+        default: false
+    },
+    membershipType: {
+        type: String,
+
+    },
+
     photoUrl:{
         type: String,
         default: "https://images.ctfassets.net/h6goo9gw1hh6/2sNZtFAWOdP1lmQ33VwRN3/24e953b920a9cd0ff2e1d587742a2472/1-intro-photo-final.jpg?w=1200&h=992&fl=progressive&q=70&fm=jpg",
