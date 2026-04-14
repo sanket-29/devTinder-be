@@ -98,4 +98,15 @@ paymentRouter.post("/payment/webhook", async (req, res) => {
 
 });
 
+paymentRouter.get("/payment/verify", userAuth, async (req, res) => {
+    const user = req.user;
+    try {    
+        if(user.isPremium) {
+            return res.status(200).json({isPremium:true});
+        }
+        return res.json({isPremium: false});
+    } catch (err) {
+        return res.status(500).send("ERROR: " + err.message);
+    }
+});
 module.exports = paymentRouter;
