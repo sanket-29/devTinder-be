@@ -50,7 +50,7 @@ try {
         req.user.firstName + " "+ "sent you a friend request!!"
     );
 
-    console.log(emailRes);
+    // console.log(emailRes);
 
     res.json({
         message: "Connection request sent successfully!!",
